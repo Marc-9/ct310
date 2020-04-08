@@ -1,6 +1,9 @@
-This repo will be used so members can all have the same working version of the site
-Fuel Models will go in the models subfolder, Fuel Controllers in the controllers subfolder and Fuel Views in the views subfolder.
-Any HTML/PHP/CSS etc will go in the index folder and will be organized appropriatly
+This is will we will store our code, communication should be down over slack.
+Everything we need to do to complete milestone 1 can be found in the issues subfolder.
+The hospital data is stored here.
+As for MYSQL fomration I will be posting a Relational model for that
+Below is the other requirement from the Milestone document
+The application is entirely MVC in Fuel PHP, no static pages.  Pages use templates for navigation and other common elements and are designed and implemented to be as generic as possible.
+It is up to the group how the different pages are broken up into controllers and actions, provided the actions are parameterized for MPN and DRG for the respective detail pages.
+The application will use no fewer than 3 models, Hospital, DRG, and Payment, which will read the respective data using the fuel model search commands.  At this stage, the models will read from a one or more files.  
 
-
-//testing connectivity to slack
