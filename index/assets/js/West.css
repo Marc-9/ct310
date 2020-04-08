@@ -1,0 +1,95 @@
+h1{
+	color:#94A187;
+}
+
+p{
+	color: #F7F7F2;
+}
+
+body{
+	background-color: #06070E;
+}
+.West{
+	margin-left: auto;
+    margin-right: auto;
+    min-width: 600px;
+}
+
+.West-main{
+	width: 80%;
+    margin-bottom: 20px;
+    margin: auto;
+    background-color: #102542;
+    min-width: 600px;
+}
+.West-main img{
+  display: block;
+  margin: 0 auto;
+  min-width: 600px;
+}
+
+.West-main h1 , p{
+	text-align: center;
+}
+#navbar {
+    position: fixed;
+    padding-top: 0;
+    margin-top: 0;
+    width: 10%;
+    height: 875px;
+    background-color: #29524A;
+    padding: 0;
+    border-radius: 5px;
+}
+
+#navbar a {
+	list-style: none;
+	padding-left: 20px;
+    padding-top: 20px;
+    display:block;
+    text-decoration: none;
+    font-size: 17px;
+    color: #F7F7F2;
+}
+
+#navbar a:hover{
+	background-color: green;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+
+.dropdown .dropbtn {
+  font-size: 17px; 
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: grey;
+}
+
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
