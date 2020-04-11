@@ -9,5 +9,12 @@
          // set the template variables 
          $this->template->title = "Our Home Page"; 
          $this->template->content = $view; 
-      } 
+      }
+      
+      public function action_hospital() {
+         $view = View::forge('welcome/hospitals');
+         
+         $this -> template -> title = "Hospitals";
+         $this -> template -> content = $view;
+      }
    }
