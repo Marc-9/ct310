@@ -1,3 +1,16 @@
+V1.0
+ADDED
+views- index.php
+views- layout.php
+controller- book.php
+index- index.php
+assets- bootstrap.min.css
+assets- bootstrap.js
+EDITED
+config- routes.php
+
+
+
 This is will we will store our code, communication should be down over slack.
 Everything we need to do to complete milestone 1 can be found in the issues subfolder.
 The hospital data is stored here.
