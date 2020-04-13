@@ -4,10 +4,10 @@
       <meta name = "viewport" content = "width = device-width, initial-scale = 1">  
       <title><?php echo $title; ?></title>  
       
-      <link href = "/assets/css/bootstrap.min.css" rel = "stylesheet">  
+      <link href = "../../assets/css/bootstrap.min.css" rel = "stylesheet">  
       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
       </script> 
-      <script src = "/assets/js/bootstrap.js"></script> 
+      <script src = "../../assets/js/bootstrap.js"></script> 
    </head>  
    
    <body> 
@@ -23,13 +23,13 @@
                   <span class = "icon-bar"></span> 
                   <span class = "icon-bar"></span> 
                </button> 
-               <a class = "navbar-brand" href = "index.php">Starting Sample</a> 
+               <a class = "navbar-brand" href = "index">Starting Sample</a> 
             </div> 
             
             <div id = "navbar" class = "collapse navbar-collapse"> 
                <ul class = "nav navbar-nav"> 
-                  <li class = "active"><a href = "index.php">Home</a></li> 
-                  <li><a href = "welcome/hospital">Hospitals</a></li> 
+                  <li class = "active"><a href = "index">Home</a></li> 
+                  <li><a href = "hospital">Hospitals</a></li> 
                </ul> 
             </div><!--/.nav-collapse --> 
          </div> 
