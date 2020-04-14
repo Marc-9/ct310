@@ -31,6 +31,7 @@
                   <li class = <?php echo $indexactive ?>><a href = "index">Home</a></li> 
                   <li class = <?php echo $hospitalactive ?>><a href = "hospital">Hospitals</a></li> 
                   <li class = <?php echo $aboutactive ?>><a href = "aboutus">About Us</a></li> 
+                  <li class = <?php echo $drgactive ?>><a href = "drg">DRG</a></li>
                </ul> 
             </div><!--/.nav-collapse --> 
          </div> 

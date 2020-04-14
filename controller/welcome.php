@@ -1,6 +1,7 @@
-<?php
+<?php  
+session_start();
+use \Model\HospitalModel;
 use \Model\DRGModel;
-
    class Controller_Welcome extends Controller_Template {
       public $template = 'layout'; 
       public function action_index() { 
@@ -14,17 +15,9 @@ use \Model\DRGModel;
          $this -> template -> indexactive = "active";
          $this -> template -> aboutactive = "none";
          $this -> template -> hospitalactive = "none";
+         $this -> template -> drgactive = "none";
       }
-      
-      public function action_hospital() {
-         $view = View::forge('welcome/hospital');
-         
-         $this -> template -> title = "Hospitals";
-         $this -> template -> content = $view;
-         $this -> template -> hospitalactive = "active";
-         $this -> template -> indexactive = "none";
-         $this -> template -> aboutactive = "none";
-      }
+
       public function action_aboutus() {
          $view = View::forge('welcome/aboutus');
          
@@ -33,20 +26,40 @@ use \Model\DRGModel;
          $this -> template -> aboutactive = "active";
          $this -> template -> indexactive = "none";
          $this -> template -> hospitalactive = "none";
-      }
-      
-      public function action_drg() {
-         $data = array(
-            'drg' =? DRGModel::read_drgs(),
-         );
-         
-         $view = View::forge('drgview', $data);
-         
-         this -> template -> "DRG List";
-         $this -> template -> content = $view;
-         $this -> template -> aboutactive = "active";
-         $this -> template -> indexactive = "none";
          $this -> template -> drgactive = "none";
       }
-   }
+      
+      public function action_hospital(){
+		  $data = array(
+				'hospital' => HospitalModel::read_hospital(),
+			 );
+		 
+			 $view = View::forge('welcome/hospital', $data);
+		 
+			 $this->template->title = "Hospital List";
+			 $this -> template -> content = $view;
+			 $this -> template -> aboutactive = "none";
+			 $this -> template -> indexactive = "none";
+			 $this -> template -> drgactive = "none";
+			 $this -> template -> hospitalactive = "active";
+		  }
+		  
+      public function action_drg() {
+         
+         $data = array(
+ 			'drg' => DRGModel::read_drgs(),
+         );
+         
+         $view = View::forge('welcome/drgview', $data);
+         
+         $this->template->title = "DRG List";
+         $this -> template -> content = $view;
+         $this -> template -> aboutactive = "none";
+         $this -> template -> indexactive = "none";
+         $this -> template -> drgactive = "active";
+         $this -> template -> hospitalactive = "none";
+      }
    
+      
+      
+   }

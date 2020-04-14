@@ -7,4 +7,4 @@
         
         echo "<tr><td>" . $num . "</td><td>" . $def . "</td></tr>";
     }
-?>
+?> 
