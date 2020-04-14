@@ -9,12 +9,27 @@
          // set the template variables 
          $this->template->title = "Our Home Page"; 
          $this->template->content = $view; 
+         $this -> template -> indexactive = "active";
+         $this -> template -> aboutactive = "none";
+         $this -> template -> hospitalactive = "none";
       }
       
       public function action_hospital() {
-         $view = View::forge('welcome/hospitals');
+         $view = View::forge('welcome/hospital');
          
          $this -> template -> title = "Hospitals";
          $this -> template -> content = $view;
+         $this -> template -> hospitalactive = "active";
+         $this -> template -> indexactive = "none";
+         $this -> template -> aboutactive = "none";
+      }
+      public function action_aboutus() {
+         $view = View::forge('welcome/aboutus');
+         
+         $this -> template -> title = "About Us";
+         $this -> template -> content = $view;
+         $this -> template -> aboutactive = "active";
+         $this -> template -> indexactive = "none";
+         $this -> template -> hospitalactive = "none";
       }
    }
