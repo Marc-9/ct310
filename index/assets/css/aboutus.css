@@ -1,0 +1,56 @@
+body {
+	background-color: #ebebeb;
+}
+body h3 {
+	text-decoration: underline;
+	margin-top: 0;
+	margin-bottom: 0;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+body p {
+	margin-top: 0;
+	margin-bottom: 0;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+body img {
+	width: 150px;
+	height: 150px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.chase {
+	position: fixed;
+	display: inline;
+	width: 33%;
+	height: 100%;
+	top: 50px;
+	left: 0;
+}
+
+.frenchy {
+	position: fixed;
+	display: inline;
+	width: 33%;
+	height: 100%;
+	top: 50px;
+	left: 33%;
+}
+
+.michael {
+	position: fixed;
+	display: inline;
+	width: 34%;
+	height: 100%;
+	top: 50px;
+	left: 66%;
+}
