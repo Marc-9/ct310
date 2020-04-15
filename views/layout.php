@@ -5,8 +5,9 @@
       <title><?php echo $title; ?></title>  
       
       <link href = "../../assets/css/bootstrap.min.css" rel = "stylesheet">  
-      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-      </script> 
+      <link href = "https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel = "stylesheet">
+       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+       <script src = "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
       <script src = "../../assets/js/bootstrap.js"></script> 
    </head>  
    
