@@ -7,6 +7,7 @@ class DRGModel extends \Model {
     }
 	
 	public static function get_hospitals($drg) {
+		return DB::query("SELECT provider_id, provider_name, provider_state FROM `test` WHERE drg_Number=$drg", DB::SELECT)->execute()->as_array();
 	}
 	
 	public static function get_payments() {
