@@ -60,6 +60,21 @@ use \Model\DRGModel;
          $this -> template -> hospitalactive = "none";
       }
    
-      
+      public function action_drgdetails() {
+         if(isset($_GET['drg'])) {
+            $data = array(
+               'drgDetails' => DRGModel::get_hospitals($_GET['drg']),
+            );
+            
+            $view = View::forge('welcome/drgdetails', $data);
+            
+            $this -> template -> title = "DRG Details";
+            $this -> template -> content = $view;
+         }
+         else {
+            $this -> template -> title = "DRG Details";
+            $this -> templaet -> content = "No DRG Given";
+         }
+      }
       
    }
