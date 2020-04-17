@@ -60,7 +60,11 @@ use \Model\DRGModel;
          $this -> template -> hospitalactive = "none";
       }
    
-      public function action_drgdetails() {
+   public function action_drgdetails() {
+   			$this -> template -> aboutactive = "none";
+         	$this -> template -> indexactive = "none";
+         	$this -> template -> drgactive = "active";
+         	$this -> template -> hospitalactive = "none";
          if(isset($_GET['drg'])) {
             $data = array(
                'drgDetails' => DRGModel::get_hospitals($_GET['drg']),
@@ -70,11 +74,34 @@ use \Model\DRGModel;
             
             $this -> template -> title = "DRG Details";
             $this -> template -> content = $view;
+            
          }
          else {
             $this -> template -> title = "DRG Details";
-            $this -> templaet -> content = "No DRG Given";
+            $this -> template -> content = "No DRG Given";
          }
       }
+       public function action_hospitaldetails() {
+   			$this -> template -> aboutactive = "none";
+         	$this -> template -> indexactive = "none";
+         	$this -> template -> drgactive = "none";
+         	$this -> template -> hospitalactive = "active";
+         if(isset($_GET['id'])) {
+            $data = array(
+               'hospitalDetails' => HospitalModel::get_hospitals($_GET['id']),
+            );
+            
+            $view = View::forge('welcome/hospitaldetails', $data);
+            
+            $this -> template -> title = "Hospital Details";
+            $this -> template -> content = $view;
+            
+         }
+         else {
+            $this -> template -> title = "Hospital Details";
+            $this -> template -> content = "No Hospital Given";
+         }
+      }
+      
       
    }

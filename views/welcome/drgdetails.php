@@ -1,19 +1,51 @@
+<br>
+<button onclick="history.go(-1);">Go Back</button>
 <h1>DRG Details</h1>
-<?php
-	echo "<h2>DRG: " . $_GET['drg'] . "</h2>";
-	echo "<table>";
-	echo "<tr><th>Hospital MPN</th><th>Hospital Name</th><th>Hospital State</th>";
-	
-	foreach($drgDetails as $d) {
-		$hospital = $d['provider_name'];
-		$mpn = $d['provider_id'];
-		$state = $d['provider_state'];
-		
-		echo
-		"<tr>" .
-			"<td>" . $mpn . "</td>" .
-			"<td>" . $hospital . "</td>" .
-			"<td>" . $state . "</td>" .
-		"</tr>";
-	}
-?>
+<h3><?php echo $drgDetails[0]['drg_Number'].'-'.$drgDetails[0]['drg_definition'] ?></h3>
+<table id="table_id" class="display">
+  <thead>
+    <tr>
+    	<th>Hospital MPN</th>
+   		<th>Hospital Name</th>
+    	<th>State</th> 
+    	<th>Average Covered Charges</th>
+   		<th>Average Total Payments</th>
+    	<th>Average Medicare Payments</th> 
+  	</tr>
+  </thead>
+  <tbody>
+  <?php
+		foreach($drgDetails as $d){
+			$hospital = $d['provider_name'];
+			$mpn = $d['provider_id'];
+			$mpn= sprintf("%06d", $mpn);
+			$state = $d['provider_state'];
+			$price1 = $d['average_covered_charges'];
+			setlocale(LC_MONETARY, 'en_US');
+			$price1 = money_format('%.2n',$price1);
+			$price2 = $d['average_total_payments'];
+			$price2 = money_format('%.2n',$price2);
+			$price3 = $d['average_medicare_payments'];
+			$price3 = money_format('%.2n',$price3);
+  		echo
+		"<tr>
+			<td>$mpn</td>
+			<td><a href=\"hospitaldetails?id=$mpn\">$hospital</a></td>
+			<td>$state</td>
+			<td>$price1</td>
+			<td>$price2</td>
+			<td>$price3</td>
+		</tr>";
+  	}
+  	?>
+  </tbody>
+
+</table>
+
+
+<script>
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>
+

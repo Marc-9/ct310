@@ -30,9 +30,9 @@
             <div id = "navbar" class = "collapse navbar-collapse"> 
                <ul class = "nav navbar-nav"> 
                   <li class = <?php echo $indexactive ?>><a href = "index">Home</a></li> 
-                  <li class = <?php echo $hospitalactive ?>><a href = "hospital">Hospitals</a></li> 
-                  <li class = <?php echo $aboutactive ?>><a href = "aboutus">About Us</a></li> 
+                  <li class = <?php echo $hospitalactive ?>><a href = "hospital">Hospitals</a></li>
                   <li class = <?php echo $drgactive ?>><a href = "drg">DRG</a></li>
+                  <li class = <?php echo $aboutactive ?>><a href = "aboutus">About Us</a></li> 
                </ul> 
             </div><!--/.nav-collapse --> 
          </div> 

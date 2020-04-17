@@ -1,3 +1,4 @@
+<br>
 
 <table id="table_id" class="display">
   <thead>
@@ -17,7 +18,7 @@
   		echo "
   		<tr>
   			<td>$num_padded</td>
-  			<td>$name</td>
+  			<td><a href=\"hospitaldetails?id=$num_padded\">$name</a></td>
   			<td>$state</td>
   		</tr>
   		";
@@ -26,6 +27,7 @@
   </tbody>
 
 </table>
+
 
 <script>
 $(document).ready( function () {

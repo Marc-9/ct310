@@ -13,7 +13,7 @@
 			$def = $d['drg_definition'];
   		echo "
   		<tr>
-  			<td><a href=\"https://cs.colostate.edu:4444/~ch85/ct310/index/welcome/drgdetails?drg=$num\">$num</a></td>
+  			<td><a href=\"drgdetails?drg=$num\">$num</a></td>
   			<td>$def</td>
   		</tr>
   		";
