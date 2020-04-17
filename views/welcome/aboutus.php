@@ -15,9 +15,9 @@
 				<br>
 				
 				<div class="michael">
-					<a href=""><img src="" alt="Michael"></a>
-					<h3>Name</h3>
-					<p>Bio</p>
+					<a href=""><img src="../../assests/img/michael.jpg" alt="Michael"></a>
+					<h3>MIchael Buaers</h3>
+					<p>A second-year student studying Computer Science and Statistics at Colorado State University</p>
 				</div>
 
 			
