@@ -10,15 +10,16 @@
 				<div class="frenchy">
 					<a href=""><img src="../../assets/img/frenchy.jpeg" alt="Frenchy"></a>
 					<h3>Jean-Marc Ruffalo-Burgat</h3>
-					<p>https://www.cs.colostate.edu:4444/~frenchy9/ct310/index/welcome/</p>
+					<p>I enjoy soccer and programming, sometimes those worlds collide<br>
+					See my version of the website <a href='https://cs.colostate.edu:4444/~frenchy9/ct310/index/welcome/'>HERE</a></p>
 				</div>
 				<br>
 				
 				<div class="michael">
-					<a href=""><img src="../../assests/img/michael.jpg" alt="Michael"></a>
-					<h3>MIchael Buaers</h3>
-					<p>A second-year student studying Computer Science and Statistics at Colorado State University</p>
-				</div>
+ 					<a href=""><img src="../../assets/img/michael.jpg" alt="Michael"" alt="Michael"></a>
+ 					<h3>Michael Bauers</h3>
+ 					<p>A second-year student studying Computer Science and Statistics at Colorado State University</p>
+ 				</div>
 
 			
 
