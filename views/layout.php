@@ -24,7 +24,7 @@
                   <span class = "icon-bar"></span> 
                   <span class = "icon-bar"></span> 
                </button> 
-               <a class = "navbar-brand" href = "index">Starting Sample</a> 
+               <a class = "navbar-brand" href = "index">Covert</a> 
             </div> 
             
             <div id = "navbar" class = "collapse navbar-collapse"> 
@@ -34,7 +34,7 @@
                   <li class = <?php echo $drgactive ?>><a href = "drg">DRG</a></li>
                   <li class = <?php echo $aboutactive ?>><a href = "aboutus">About Us</a></li> 
                </ul> 
-            </div><!--/.nav-collapse --> 
+            </div> 
          </div> 
       </nav>  
       
