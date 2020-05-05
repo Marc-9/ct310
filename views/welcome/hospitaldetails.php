@@ -39,7 +39,7 @@ $num_padded = sprintf("%06d", $hospitalDetails[0]['provider_id']);
   		echo
 		"<tr>
 			<td><a href=\"drgdetails?drg=$id\">$id</a></td>
-			<td> $price1</td>.
+			<td>$price1</td>
 			<td>$price2</td>
 			<td>$price3</td>
 			<td>$desc</td>
@@ -51,9 +51,12 @@ $num_padded = sprintf("%06d", $hospitalDetails[0]['provider_id']);
   </tbody>
 
 </table>
+<?php include('comments.php') ?>
 
 <script>
 $(document).ready( function () {
-    $('#table_id').DataTable();
+    $('#table_id').DataTable({
+    "iDisplayLength": 20
+    })
 } );
 </script>

@@ -22,8 +22,12 @@
   </tbody>
 
 </table>
+
+
 <script>
 $(document).ready( function () {
-    $('#table_id').DataTable();
+    $('#table_id').DataTable({
+    "iDisplayLength": 20
+    })
 } );
 </script>

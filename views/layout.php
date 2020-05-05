@@ -2,13 +2,14 @@
 <html lang = "en"> 
    <head> 
       <meta name = "viewport" content = "width = device-width, initial-scale = 1">  
+      <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico" />
       <title><?php echo $title; ?></title>  
       
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+      <script src = "../../assets/js/bootstrap.js"></script>
       <link href = "../../assets/css/bootstrap.min.css" rel = "stylesheet">  
       <link href = "https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel = "stylesheet">
-       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
        <script src = "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-      <script src = "../../assets/js/bootstrap.js"></script> 
    </head>  
    
    <body> 
@@ -33,6 +34,7 @@
                   <li class = <?php echo $hospitalactive ?>><a href = "hospital">Hospitals</a></li>
                   <li class = <?php echo $drgactive ?>><a href = "drg">DRG</a></li>
                   <li class = <?php echo $aboutactive ?>><a href = "aboutus">About Us</a></li> 
+                  <li class = <?php echo $loginactive ?>><a href = "login">Login</a></li>
                </ul> 
             </div> 
          </div> 

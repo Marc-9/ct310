@@ -1,5 +1,4 @@
 <?php  
-session_start();
 use \Model\HospitalModel;
 use \Model\DRGModel;
    class Controller_Welcome extends Controller_Template {
@@ -16,6 +15,7 @@ use \Model\DRGModel;
          $this -> template -> aboutactive = "none";
          $this -> template -> hospitalactive = "none";
          $this -> template -> drgactive = "none";
+         $this -> template -> loginactive = "none";
       }
 
       public function action_aboutus() {
@@ -27,6 +27,7 @@ use \Model\DRGModel;
          $this -> template -> indexactive = "none";
          $this -> template -> hospitalactive = "none";
          $this -> template -> drgactive = "none";
+         $this -> template -> loginactive = "none";
       }
       
       public function action_hospital(){
@@ -42,6 +43,7 @@ use \Model\DRGModel;
 			 $this -> template -> indexactive = "none";
 			 $this -> template -> drgactive = "none";
 			 $this -> template -> hospitalactive = "active";
+			 $this -> template -> loginactive = "none";
 		  }
 		  
       public function action_drg() {
@@ -58,6 +60,7 @@ use \Model\DRGModel;
          $this -> template -> indexactive = "none";
          $this -> template -> drgactive = "active";
          $this -> template -> hospitalactive = "none";
+         $this -> template -> loginactive = "none";
       }
    
    public function action_drgdetails() {
@@ -65,6 +68,7 @@ use \Model\DRGModel;
          	$this -> template -> indexactive = "none";
          	$this -> template -> drgactive = "active";
          	$this -> template -> hospitalactive = "none";
+         	$this -> template -> loginactive = "none";
          if(isset($_GET['drg'])) {
             $data = array(
                'drgDetails' => DRGModel::get_hospitals($_GET['drg']),
@@ -86,6 +90,7 @@ use \Model\DRGModel;
          	$this -> template -> indexactive = "none";
          	$this -> template -> drgactive = "none";
          	$this -> template -> hospitalactive = "active";
+         	$this -> template -> loginactive = "none";
          if(isset($_GET['id'])) {
             $data = array(
                'hospitalDetails' => HospitalModel::get_hospitals($_GET['id']),
@@ -102,6 +107,17 @@ use \Model\DRGModel;
             $this -> template -> content = "No Hospital Given";
          }
       }
+      
+      public function action_login() {
+      	$view = View::forge('welcome/login'); 
+      	$this->template->title = "Our Home Page"; 
+        $this->template->content = $view; 
+        $this -> template -> indexactive = "none";
+        $this -> template -> aboutactive = "none";
+        $this -> template -> hospitalactive = "none";
+        $this -> template -> drgactive = "none";
+        $this -> template -> loginactive = "active";
+    }
       
       
    }
