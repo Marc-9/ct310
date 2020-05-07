@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html> 
 <html lang = "en"> 
    <head> 
@@ -34,7 +35,7 @@
                   <li class = <?php echo $hospitalactive ?>><a href = "hospital">Hospitals</a></li>
                   <li class = <?php echo $drgactive ?>><a href = "drg">DRG</a></li>
                   <li class = <?php echo $aboutactive ?>><a href = "aboutus">About Us</a></li> 
-                  <li class = <?php echo $loginactive ?>><a href = "login">Login</a></li>
+                  <?php if(!isset($_SESSION['id'])){echo "<li class =$loginactive><a href = 'login'>Login</a></li>";} ?>
                </ul> 
             </div> 
          </div> 
