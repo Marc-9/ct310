@@ -76,13 +76,13 @@ function print_comment($x,$db,$width,$comment){
 	$ran = rand(1,100);
 	//Here the width variable is used to set the margin-left css style and then I print the comment
 	echo "<div class='parent' style='margin-left:".$width."px'>".$x['comment']."
-	<div class='actions'><button  type='button' onclick='fun($ran)'>Reply</button><button type='button' onclick='action(\"upvote\")'>Like</button><button type='button'>Dislike</button>";
+	<div class='actions'><button  type='button' onclick='fun($ran)'>Reply</button><button type='button' onclick='foo(\"".$ran."_1_".$x['id']."\")'>Like</button><button type='button'onclick='foo(\"".$ran."_2_".$x['id']."\")' >Dislike</button>";
 	//Reply Like and Dislike are all actions every user gets, here I check which user it is to see if they can see the edit/delete
 	//Normally I would check for admin rather than id == 2, but there is only 1 admin and he id 2
 	if(($comment['userid'] == $_SESSION['id']) || $_SESSION['id'] == 2){echo "<button type='button'>Edit</button><button type='button'>Delete</button></div>";}else{echo"</div>";}
 	$uname = mysqli_fetch_assoc($db->query("SELECT username FROM users WHERE id = ".$comment['userid']." "));
 	echo"
-	<div class='info'>Score: ".$comment['score']." &nbsp; &nbsp; Posted By-".$uname['username']."&nbsp; &nbsp At-".$x['created']." ";
+	<div class='info'>Score: <div id='score$ran'>".$comment['score']."</div> &nbsp; &nbsp; Posted By-".$uname['username']."&nbsp; &nbsp At-".$x['created']." ";
 	if($x['edited'] != NULL){echo"&nbsp; &nbsp; Edited Last-".$x['edited']." </div>";}
 	else{echo"</div>";}
 	//Below is a hidden reply form, here I use the random number, and the reply button calls a JS function with the random number
@@ -125,23 +125,62 @@ echo"<br><br>";
 ?>
 
 <script>
-function action(data){
-	$.ajax({
-            url:"../../ajax.php",
-            type:'post',
-			success: function(){
-    			alert('success');
-  			},
-  			data:{action:data},
-  			error: function(){
-   				alert('failure');
- 			 }
-		})
-}
 
-function downvote(){
+function foo(data){
+var arr = data.split("_");
+$.ajax({
+    type:     "post",
+    data:     {action: arr[1], commentid: arr[2]},
+    cache:    false,
+    url:      "../../ajax.php",
+    dataType: "text",
+    error: function(xhr, textStatus, thrownError) {
+        if(xhr.status==404) {
+       	var prev = $('#score'+arr[0]).text();
+		prev = parseInt(prev) - 1;
+		$('#score'+arr[0]).text(prev);
+   	 }
+   	 	else if(xhr.status==401){
+   	 	var prev = $('#score'+arr[0]).text();
+		prev = parseInt(prev) + 2;
+		$('#score'+arr[0]).text(prev);
+   	 }
+   	 else if(xhr.status==400){
+   	 	var prev = $('#score'+arr[0]).text();
+		prev = parseInt(prev) - 2;
+		$('#score'+arr[0]).text(prev);
+   	 }
+   	 else if(xhr.status==402){
+   	 	var prev = $('#score'+arr[0]).text();
+		prev = parseInt(prev) + 1;
+		$('#score'+arr[0]).text(prev);
+   	 }
+   	 else if(xhr.status==403){
+   	 	var prev = $('#score'+arr[0]).text();
+		prev = parseInt(prev) + 1;
+		$('#score'+arr[0]).text(prev);
+   	 }
+   	 else if(xhr.status==405){
+   	 	var prev = $('#score'+arr[0]).text();
+		prev = parseInt(prev) - 1;
+		$('#score'+arr[0]).text(prev);
+   	 }
+    },
+    success: function () {
+    	if(arr[1] == 1){
+       		var prev = $('#score'+arr[0]).text();
+			prev = parseInt(prev) + 1;
+			$('#score'+arr[0]).text(prev);
+		}
+		if(arr[1] == 2){
+       		var prev = $('#score'+arr[0]).text();
+			prev = parseInt(prev) - 1;
+			$('#score'+arr[0]).text(prev);
+		}
+    }
+});
+};
 
-}
 
 function fun(num){
 	$("#hidden"+num).toggle();
