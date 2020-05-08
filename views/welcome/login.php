@@ -32,7 +32,6 @@
 			if($_POST["user"] == $l["username"] && $_POST["pass"] == $l["password"]) {
 				echo "<p style=\"color:green; margin-left:48%\">Login Successful</p>";
 				
-				session_start();
 				$_SESSION["user"] = $l["username"];
 				$_SESSION["pass"] = $l["password"];
 				$_SESSION["admin"] = $l["admin"];
