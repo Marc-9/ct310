@@ -1,3 +1,9 @@
+<?php
+if(isset($_SESSION['id'])){
+	header('location:index');
+	}
+?>
+
 <style>
 	.log {
 		text-align: center;
@@ -32,9 +38,14 @@
 			if($_POST["user"] == $l["username"] && $_POST["pass"] == $l["password"]) {
 				echo "<p style=\"color:green; margin-left:48%\">Login Successful</p>";
 				
-				$_SESSION["user"] = $l["username"];
-				$_SESSION["pass"] = $l["password"];
-				$_SESSION["admin"] = $l["admin"];
+				if($l["username"] == "ct310") {
+					$_SESSION["id"] = 1;
+				}
+				else {
+					$_SESSION["id"] = 2;
+				}
+				
+				header("refresh:1;url=index");
 				return;
 			}
 		}
