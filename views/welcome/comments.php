@@ -1,7 +1,12 @@
 <?php
+// Ok this code is very gross, but with finals a couple days away I had to finish, so I apologize for that
+// The good thing about this is this code is EXTERMELLY portable, any page with an ?id= just needs to include this file 
+// and comments will work seemelsy
 require('config.php');
+//Only one database was allocated per student, so all queries go to their respective tables their
 $db= mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);
 
+// New comments are sent via post request so lets check if one was sent with this
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	// Replies and comments send their comments through this post variable
 	$comment = $_POST['reply'];
@@ -71,6 +76,13 @@ while($comment = $result->fetch_assoc()){
 echo "</div>";
 }
 
+/*
+How comments work, each comment gets generated a random id and all comment buttons and divs are assigned this id with their prefix
+like like$ran $dislike$ran so I may modify them with jquery in the script below, does this work, yes is it gross, a bit I guess
+its possible to get the same number generated but you could always increase the bounds, Im not sure of any other way to just interact
+with one thing especialy whne I use a loop to print them out.
+*/
+
 function print_comment($x,$db,$width,$comment){
 	// Generate a random number from 1 to 100, a weird and gross hack which will becomme apparent
 	$ran = rand(1,100);
@@ -123,11 +135,18 @@ function print_comment($x,$db,$width,$comment){
 		print_comment($new_reply,$db,$width+20,$working);
 	}
 }
+//Lets let the bottom breathe a bit shall we?
 echo"<br><br>";
 ?>
 
 <script>
-
+/* 
+All right are you ready for the craziest hack ever, this is really gross but I couldnt think of any other way to do it
+Somehow I need to asynchronously change the upvote/downvote but I also need to query the database and wait for its response
+to tell me if there is already an upvote/downvote or if they have nulled their previous vote. Ofc if you have to wait for a query 
+it is not asynchronous. What I did is I checked each case, and returned an error code that corresponded with a certain action
+this allowed me to catch it AND know what actions I needed to take
+*/
 function foo(data){
 var arr = data.split("_");
 $.ajax({
@@ -138,37 +157,45 @@ $.ajax({
     dataType: "text",
     error: function(xhr, textStatus, thrownError) {
         if(xhr.status==404) {
+        // This error means they have previously upvoted this comment and would like to revoke that decision
        	var prev = $('#score'+arr[0]).text();
 		prev = parseInt(prev) - 1;
 		$('#score'+arr[0]).text(prev);
    	 }
    	 	else if(xhr.status==401){
+   	 	// This error means they had previously downvoted but now want to upvote
    	 	var prev = $('#score'+arr[0]).text();
 		prev = parseInt(prev) + 2;
 		$('#score'+arr[0]).text(prev);
    	 }
    	 else if(xhr.status==400){
+   	 	// This error means they had previously upvoted and now want to downvote
    	 	var prev = $('#score'+arr[0]).text();
 		prev = parseInt(prev) - 2;
 		$('#score'+arr[0]).text(prev);
    	 }
    	 else if(xhr.status==402){
+   	 	// This error means they had previously downvoted and now want to revoke that decision
    	 	var prev = $('#score'+arr[0]).text();
 		prev = parseInt(prev) + 1;
 		$('#score'+arr[0]).text(prev);
    	 }
    	 else if(xhr.status==403){
+   	 	// This error means they had previously nullified their vote and would like to upvote
    	 	var prev = $('#score'+arr[0]).text();
 		prev = parseInt(prev) + 1;
 		$('#score'+arr[0]).text(prev);
    	 }
    	 else if(xhr.status==405){
+   	 	// This error means they had previously nullified their vote and would like to downvote
    	 	var prev = $('#score'+arr[0]).text();
 		prev = parseInt(prev) - 1;
 		$('#score'+arr[0]).text(prev);
    	 }
     },
     success: function () {
+    	// These are separate because as I found out after a long time an ajax 'success' just means 200 file was found
+    	// These just check the action id and upvote downvote accordingly
     	if(arr[1] == 1){
        		var prev = $('#score'+arr[0]).text();
 			prev = parseInt(prev) + 1;
@@ -183,6 +210,8 @@ $.ajax({
 });
 };
 
+
+// Edit was pretty easy, but I needed to make it clear that something had changed so hence the shake and border
 function edit(id){
 	$('#comment'+id).attr('contenteditable','true');
 	$('#comment'+id).css({"border-color": "#C1E0FF", 
@@ -192,6 +221,7 @@ function edit(id){
 	$('#save'+id).css("display","inline");
 }
 
+// Separated the two actions, just cause it was easier, save button only appears when edit is pressed and disappears after you save
 function save(data){
 	var arr = data.split("_");
 	$('#comment'+arr[0]).attr('contenteditable','false');
@@ -209,6 +239,7 @@ function save(data){
     });
 }
 
+// A bit tricky like upvote/downvote as you have to check if replies exist, so I implemented the same concept with the erro codes
 function delete_com(data){
 	var arr = data.split("_");
 	 $.ajax({
@@ -237,6 +268,7 @@ function delete_com(data){
     })
 }
 
+// Action to show or hide the reply box
 function fun(num){
 	$("#hidden"+num).toggle();
 
