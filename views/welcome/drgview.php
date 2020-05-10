@@ -9,7 +9,7 @@
   <tbody>
     <?php
 		foreach($drg as $d){
-			$num = $d['drg_Number'];
+			$num = $d['id'];
 			$def = $d['drg_definition'];
   		echo "
   		<tr>

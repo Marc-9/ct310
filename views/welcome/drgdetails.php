@@ -1,7 +1,7 @@
 <br>
 <button onclick="history.go(-1);">Go Back</button>
 <h1>DRG Details</h1>
-<h3><?php echo $drgDetails[0]['drg_Number'].'-'.$drgDetails[0]['drg_definition'] ?></h3>
+<h3><?php echo $drgDetails[0]['drg_id'].'-'.$drgDetails[0]['drg_definition'] ?></h3>
 <table id="table_id" class="display">
   <thead>
     <tr>
@@ -16,10 +16,10 @@
   <tbody>
   <?php
 		foreach($drgDetails as $d){
-			$hospital = $d['provider_name'];
-			$mpn = $d['provider_id'];
+			$hospital = $d['name'];
+			$mpn = $d['id'];
 			$mpn= sprintf("%06d", $mpn);
-			$state = $d['provider_state'];
+			$state = $d['state'];
 			$price1 = $d['average_covered_charges'];
 			setlocale(LC_MONETARY, 'en_US');
 			$price1 = money_format('%.2n',$price1);
