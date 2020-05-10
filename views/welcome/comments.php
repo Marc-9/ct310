@@ -75,16 +75,18 @@ function print_comment($x,$db,$width,$comment){
 	// Generate a random number from 1 to 100, a weird and gross hack which will becomme apparent
 	$ran = rand(1,100);
 	//Here the width variable is used to set the margin-left css style and then I print the comment
-	echo "<div class='parent' style='margin-left:".$width."px'>".$x['comment']."
-	<div class='actions'><button  type='button' onclick='fun($ran)'>Reply</button><button type='button' onclick='foo(\"".$ran."_1_".$x['id']."\")'>Like</button><button type='button'onclick='foo(\"".$ran."_2_".$x['id']."\")' >Dislike</button>";
+	echo "<div id='$ran'><div class='parent' style='margin-left:".$width."px'><div id='comment$ran'>".$x['comment']."</div>";
+	if($comment['userid'] != 0){echo "<div class='actions'><button type='button' id='reply$ran' onclick='fun($ran)'>Reply</button><button type='button' id='like$ran' onclick='foo(\"".$ran."_1_".$x['id']."\")'>Like</button><button type='button' id='dislike$ran' onclick='foo(\"".$ran."_2_".$x['id']."\")' >Dislike</button>";}else{ echo "<div class='actions'>";}
 	//Reply Like and Dislike are all actions every user gets, here I check which user it is to see if they can see the edit/delete
 	//Normally I would check for admin rather than id == 2, but there is only 1 admin and he id 2
-	if(($comment['userid'] == $_SESSION['id']) || $_SESSION['id'] == 2){echo "<button type='button'>Edit</button><button type='button'>Delete</button></div>";}else{echo"</div>";}
+	if( ( ($comment['userid'] == $_SESSION['id']) || $_SESSION['id'] == 2) && $comment['userid'] != 0) {echo "<button type='button' id='edit$ran' onclick='edit($ran)'>Edit</button><button type='button' id='save$ran' onclick='save(\"".$ran."_3_".$x['id']."\")' style='display:none'>Save</button><button type='button' id='delete$ran' onclick='delete_com(\"".$ran."_4_".$x['id']."\")'>Delete</button></div>";}else{echo"</div>";}
 	$uname = mysqli_fetch_assoc($db->query("SELECT username FROM users WHERE id = ".$comment['userid']." "));
 	echo"
-	<div class='info'>Score: <div id='score$ran'>".$comment['score']."</div> &nbsp; &nbsp; Posted By-".$uname['username']."&nbsp; &nbsp At-".$x['created']." ";
-	if($x['edited'] != NULL){echo"&nbsp; &nbsp; Edited Last-".$x['edited']." </div>";}
-	else{echo"</div>";}
+	<div class='info'>Score: <div id='score$ran' style='display:inline'>".$comment['score']."</div> &nbsp; &nbsp; Posted By-";
+	if ($comment['userid'] == 0){ echo "[Deleted]";}else{ echo "<div id='poster$ran' style='display:inline'>".$uname['username']."</div>";}
+	echo"&nbsp; &nbsp At-".$x['created']." ";
+	if($x['edited'] != NULL){echo"&nbsp; &nbsp; Edited Last-".$x['edited']." </div></div>";}
+	else{echo"</div></div>";}
 	//Below is a hidden reply form, here I use the random number, and the reply button calls a JS function with the random number
 	//So it can find the rpely id and show it contents and not every reply box on the page
 	echo"
@@ -181,6 +183,59 @@ $.ajax({
 });
 };
 
+function edit(id){
+	$('#comment'+id).attr('contenteditable','true');
+	$('#comment'+id).css({"border-color": "#C1E0FF", 
+             "border-width":"1px", 
+             "border-style":"solid"});
+	$('#comment'+id).effect( "shake" );
+	$('#save'+id).css("display","inline");
+}
+
+function save(data){
+	var arr = data.split("_");
+	$('#comment'+arr[0]).attr('contenteditable','false');
+	$('#save'+arr[0]).css("display","none");
+	$('#comment'+arr[0]).css({"border-color": "none", 
+             "border-width":"none", 
+             "border-style":"none"});
+    var comment = $('#comment'+arr[0]).text();
+    $.ajax({
+   		type:     "post",
+    	data:     {action: arr[1], commentid: arr[2], comment: comment},
+    	cache:    false,
+    	url:      "../../ajax.php",
+    	dataType: "text"
+    });
+}
+
+function delete_com(data){
+	var arr = data.split("_");
+	 $.ajax({
+   		type:     "post",
+    	data:     {action: arr[1], commentid: arr[2]},
+    	cache:    false,
+    	url:      "../../ajax.php",
+    	dataType: "text",
+    	error: function(xhr, textStatus, thrownError) {
+    		// If the comment has no children
+        	if(xhr.status==404) {
+       			$('#'+arr[0]).css("display","none");
+				
+   	 		}
+   	 		// If the comment has children
+   	 		else if(xhr.status==401) {
+       			$('#comment'+arr[0]).text('[DELETED]');
+       			$('#reply'+arr[0]).css("display","none");
+       			$('#like'+arr[0]).css("display","none");
+       			$('#dislike'+arr[0]).css("display","none");
+       			$('#edit'+arr[0]).css("display","none");
+       			$('#delete'+arr[0]).css("display","none");
+       			$('#poster'+arr[0]).css("display","none");
+   	 		}
+   	 	}
+    })
+}
 
 function fun(num){
 	$("#hidden"+num).toggle();

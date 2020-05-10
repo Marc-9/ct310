@@ -7,9 +7,11 @@
       <title><?php echo $title; ?></title>  
       
       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+      <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src = "../../assets/js/bootstrap.js"></script>
       <link href = "../../assets/css/bootstrap.min.css" rel = "stylesheet">  
       <link href = "https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel = "stylesheet">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
        <script src = "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
    </head>  
    
