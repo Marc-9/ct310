@@ -28,6 +28,6 @@
 $(document).ready( function () {
     $('#table_id').DataTable({
     "iDisplayLength": 20
-    })
+    });
 } );
 </script>
