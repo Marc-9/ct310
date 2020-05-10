@@ -57,6 +57,6 @@ $num_padded = sprintf("%06d", $hospitalDetails[0]['provider_id']);
 $(document).ready( function () {
     $('#table_id').DataTable({
     "iDisplayLength": 20
-    })
+    });
 } );
 </script>
