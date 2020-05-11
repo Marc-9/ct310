@@ -11,10 +11,10 @@
   <tbody>
   <?php
 		foreach($hospital as $h){
-			$name = $h['provider_name'];
-			$id = $h['provider_id'];
+			$name = $h['name'];
+			$id = $h['id'];
 			$num_padded = sprintf("%06d", $id);
-			$state = $h['provider_state'];
+			$state = $h['state'];
   		echo "
   		<tr>
   			<td>$num_padded</td>
